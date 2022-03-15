@@ -1458,13 +1458,13 @@ public abstract class DestinationAcceptanceTest implements DateTimeConverter {
     if (actualMessages != null) {
       for (AirbyteRecordMessage message : actualMessages) {
         nestedFieldNames.stream().filter(name -> message.getData().has(name)).forEach(name -> {
-            var data = message.getData().get(name).asText();
-            try {
-              ((ObjectNode) message.getData()).put(name,
-                  new ObjectMapper().readTree(data));
-            } catch (JsonProcessingException e) {
-              e.printStackTrace();
-            }
+          var data = message.getData().get(name).asText();
+          try {
+            ((ObjectNode) message.getData()).put(name,
+                new ObjectMapper().readTree(data));
+          } catch (JsonProcessingException e) {
+            e.printStackTrace();
+          }
         });
       }
     }

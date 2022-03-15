@@ -353,4 +353,5 @@ public class BigQueryDenormalizedDestinationAcceptanceTest extends DestinationAc
       }
     }
   }
+
 }
