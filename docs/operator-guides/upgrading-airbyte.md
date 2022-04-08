@@ -146,4 +146,3 @@ Here is an example of what this request might look like assuming that the migrat
 curl -H "Content-Type: application/x-gzip" -X POST localhost:8000/api/v1/deployment/import --data-binary @/tmp/airbyte_archive_migrated.tar.gz
 ```
 
-a

@@ -228,4 +228,3 @@ For the sake of brevity, we will not re-describe `spec` and `check`. They are ex
 
 We'd like to note that we were initially inspired by Singer.io's [specification](https://github.com/singer-io/getting-started/blob/master/docs/SPEC.md#singer-specification) and would like to acknowledge that some of their design choices helped us bootstrap our project. We've since made a lot of modernizations to our protocol and specification, but don't want to forget the tools that helped us get started.
 
-a

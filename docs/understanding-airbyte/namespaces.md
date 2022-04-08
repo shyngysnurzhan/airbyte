@@ -118,4 +118,3 @@ The following table summarises how this works. We assume an example of replicati
 * Snowflake
 * S3
 
-a
