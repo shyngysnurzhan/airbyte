@@ -1,13 +1,8 @@
 import React from "react";
-import sanitizeHtml from "sanitize-html";
+import DOMPurify from "dompurify";
 
 type IProps = {
   text?: string;
-};
-
-const allowedAttributes = {
-  ...sanitizeHtml.defaults.allowedAttributes,
-  a: [...sanitizeHtml.defaults.allowedAttributes["a"], "rel"],
 };
 
 const TextWithHTML: React.FC<IProps> = ({ text }) => {
@@ -15,15 +10,15 @@ const TextWithHTML: React.FC<IProps> = ({ text }) => {
     return null;
   }
 
-  const sanitizedHtmlText = sanitizeHtml(text, {
-    allowedAttributes,
-    transformTags: {
-      a: sanitizeHtml.simpleTransform("a", {
-        target: "_blank",
-        rel: "noopener noreferrer",
-      }),
-    },
+  DOMPurify.addHook("afterSanitizeAttributes", function (node) {
+    // set all elements owning target to target=_blank
+    if ("rel" in node) {
+      node.setAttribute("target", "_blank");
+      node.setAttribute("rel", "noopener noreferrer");
+    }
   });
+
+  var sanitizedHtmlText = DOMPurify.sanitize(text, { ALLOWED_TAGS: ["a"], ALLOWED_ATTR: ["rel"] });
 
   return <span dangerouslySetInnerHTML={{ __html: sanitizedHtmlText }} />;
 };
